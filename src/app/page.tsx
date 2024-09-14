@@ -1,3 +1,9 @@
+import CategoryNavigator from "@/components/CategoryNavigator";
+
 export default function Home() {
-  return <div>Hello, world!</div>;
+  return (
+    <div>
+      <CategoryNavigator categories={["A", "B", "C"]} />
+    </div>
+  );
 }
