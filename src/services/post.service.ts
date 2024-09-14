@@ -1,11 +1,27 @@
 import { Post, PostMeta } from "@/models/post";
 
-export function getAllPosts(): Post[] {
-  return DUMMY_POSTS.map(post => ({
+export function getAllPosts(filters?: PostFilters): Post[] {
+  const posts = DUMMY_POSTS.map(post => ({
     slug: post.slug,
     meta: post.meta,
     bodyHtml: dummyBodyHtml,
   }));
+
+  if (!!filters) {
+    return posts.filter(post => checkByFilter(post, filters));
+  }
+
+  return posts;
+}
+
+interface PostFilters {
+  category?: string | null;
+}
+
+function checkByFilter(postMeta: PostMeta, filters: PostFilters): boolean {
+  if (!!filters.category && postMeta.meta.category !== filters.category) return false;
+
+  return true;
 }
 
 /**
