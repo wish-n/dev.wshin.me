@@ -18,5 +18,5 @@ export function setSearchParam(
   else searchParams.delete(name);
 
   url.search = searchParams.toString();
-  router.push(url.toString());
+  router.replace(url.toString());
 }
