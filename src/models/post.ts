@@ -23,9 +23,8 @@ export interface PostFrontMatter {
 /**
  * 포스트 메타데이터
  */
-export interface PostMeta {
+export interface PostMeta extends PostFrontMatter {
   slug: string;
-  meta: PostFrontMatter;
 }
 
 /**

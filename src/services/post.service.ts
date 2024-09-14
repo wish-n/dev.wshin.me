@@ -2,8 +2,7 @@ import { Post, PostMeta } from "@/models/post";
 
 export function getAllPosts(filters?: PostFilters): Post[] {
   const posts = DUMMY_POSTS.map(post => ({
-    slug: post.slug,
-    meta: post.meta,
+    ...post,
     bodyHtml: dummyBodyHtml,
   }));
 
@@ -19,7 +18,7 @@ interface PostFilters {
 }
 
 function checkByFilter(postMeta: PostMeta, filters: PostFilters): boolean {
-  if (!!filters.category && postMeta.meta.category !== filters.category) return false;
+  if (!!filters.category && postMeta.category !== filters.category) return false;
 
   return true;
 }
@@ -38,7 +37,7 @@ export function getAllCategories(): string[] {
   return Array.from(
     new Set(
       getAllPostsMeta()
-        .map(post => post.meta.category)
+        .map(post => post.category)
         .filter(category => !!category)
         .map(category => category!), // 위에서 filter하고 있으므로, compile error 우회를 위해
     ),
@@ -49,36 +48,28 @@ export function getAllCategories(): string[] {
 // TODO: REMOVE
 const DUMMY_POSTS: PostMeta[] = [
   {
-    slug: "",
-    meta: {
-      title: "마라탕을 졸이면 마라샹궈가 될까",
-      date: new Date(2024, 8, 10),
-      category: "Foods",
-    },
+    slug: "a",
+    title: "마라탕을 졸이면 마라샹궈가 될까",
+    date: new Date(2024, 8, 10),
+    category: "Foods",
   },
   {
-    slug: "",
-    meta: {
-      title: "개발이란 개발하는 것이다",
-      date: new Date(2024, 8, 12),
-      category: "Dev",
-    },
+    slug: "b",
+    title: "개발이란 개발하는 것이다",
+    date: new Date(2024, 8, 12),
+    category: "Dev",
   },
   {
-    slug: "",
-    meta: {
-      title: "아 배고프네",
-      date: new Date(2024, 8, 13),
-      category: "Foods",
-    },
+    slug: "c",
+    title: "아 배고프네",
+    date: new Date(2024, 8, 13),
+    category: "Foods",
   },
   {
-    slug: "",
-    meta: {
-      title: "대충 내가 최신글이어야 함",
-      date: new Date(2024, 8, 14),
-      category: "Dev",
-    },
+    slug: "d",
+    title: "대충 내가 최신글이어야 함",
+    date: new Date(2024, 8, 14),
+    category: "Dev",
   },
 ];
 

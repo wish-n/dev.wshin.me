@@ -13,9 +13,9 @@ function postListItem(post: Post) {
   return (
     <li className="mb-12" key={post.slug}>
       <div>
-        <h2 className="text-2xl font-bold">{post.meta.title}</h2>
+        <h2 className="text-2xl font-bold">{post.title}</h2>
         <p className="mt-2 text-sm font-medium text-neutral-500">
-          {defaultDateFormatter(post.meta.date)} &mdash; {post.meta.category}
+          {defaultDateFormatter(post.date)} &mdash; {post.category}
         </p>
       </div>
       <div
