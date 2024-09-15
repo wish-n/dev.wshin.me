@@ -31,6 +31,28 @@ export function getAllPostsMeta(): PostMeta[] {
 }
 
 /**
+ * 모든 포스트의 메타데이터를 작성연도로 GROUP BY 하여 반환한다.
+ */
+export function getAllPostsMetaGroupByYear(): { year: number; posts: PostMeta[] }[] {
+  const allPosts = getAllPostsMeta();
+
+  const mapByYear = new Map<number, PostMeta[]>();
+  allPosts.forEach(post => {
+    const year = post.date.getFullYear();
+
+    if (!mapByYear.has(year)) {
+      mapByYear.set(year, []);
+    }
+
+    mapByYear.get(year)!.push(post);
+  });
+
+  return Array.from(mapByYear.entries())
+    .map(([year, posts]) => ({ year, posts }))
+    .toSorted(({ year: yearA }, { year: yearB }) => yearB - yearA);
+}
+
+/**
  * 모든 카테고리를 조회한다.
  */
 export function getAllCategories(): string[] {
@@ -50,13 +72,13 @@ const DUMMY_POSTS: PostMeta[] = [
   {
     slug: "a",
     title: "마라탕을 졸이면 마라샹궈가 될까",
-    date: new Date(2024, 8, 10),
+    date: new Date(2022, 8, 10),
     category: "Foods",
   },
   {
     slug: "b",
     title: "개발이란 개발하는 것이다",
-    date: new Date(2024, 8, 12),
+    date: new Date(2023, 8, 12),
     category: "Dev",
   },
   {
