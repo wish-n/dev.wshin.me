@@ -5,4 +5,4 @@ draft: false
 ---
 
 제 블로그에 사용할 Next.js 스타터입니다.
-https://github.com/wsh-n/wsh-n.github.io
+https://github.com/wsh-n/wsh-n.github.io 
