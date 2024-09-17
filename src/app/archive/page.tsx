@@ -1,9 +1,9 @@
-import { getAllPostsMetaGroupByYear } from "@/services/post.service";
+import Posts from "@/services/post.service";
 import Link from "next/link";
 import { defaultDateFormatter } from "@/utils/date";
 
 export default function Archive() {
-  const posts = getAllPostsMetaGroupByYear();
+  const posts = Posts.getAllGroupByYear();
 
   return (
     <div>
