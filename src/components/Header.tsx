@@ -6,29 +6,30 @@ export default function Header(props: HeaderProps) {
       <h1 className="select-none text-xl font-bold">
         <Link href="/">{props.blogTitle}</Link>
       </h1>
-      <Navigator />
+      <Navigator navLinks={props.navLinks} />
     </header>
   );
 }
 
 interface HeaderProps {
   blogTitle: string;
+  navLinks: { name: string; url: string }[];
 }
 
-function Navigator() {
+function Navigator(props: NavigatorProps) {
   return (
     <nav>
       <ul className="flex select-none flex-row justify-end align-middle font-medium [&>li]:ml-5">
-        <li>
-          <Link href="/">Posts</Link>
-        </li>
-        <li>
-          <Link href="/archive">Archive</Link>
-        </li>
-        <li>
-          <Link href="/about">About</Link>
-        </li>
+        {props.navLinks.map(link => (
+          <li key={link.name}>
+            <Link href={link.url}>{link.name}</Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
+}
+
+interface NavigatorProps {
+  navLinks: { name: string; url: string }[];
 }
