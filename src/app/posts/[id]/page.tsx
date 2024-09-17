@@ -20,6 +20,7 @@ export default function PostPage({ params }: { params: PostPageStaticParams }) {
     </div>
   );
 }
+
 interface PostPageStaticParams {
   id: string;
 }
