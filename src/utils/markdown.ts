@@ -12,10 +12,18 @@ export function findMdFiles(rootDirPath: string): string[] {
 }
 
 function walk(dirPath: string): string[] {
+  let fileNames: string[] = [];
   const filePaths: string[] = [];
   const dirPaths: string[] = [];
 
-  fs.readdirSync(dirPath).forEach(fileName => {
+  try {
+    fileNames = fs.readdirSync(dirPath);
+  } catch (e) {
+    console.warn(`Directory not found - ${dirPath}\n`, e);
+    return [];
+  }
+
+  fileNames.forEach(fileName => {
     const filePath = Path.join(dirPath, fileName);
     const fileStat = fs.lstatSync(filePath);
     if (fileStat.isFile()) filePaths.push(filePath);
