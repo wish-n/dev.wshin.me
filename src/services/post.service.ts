@@ -15,18 +15,20 @@ class PostService {
   constructor() {
     // constructor 시점에 마크다운 파일들을 읽어 내부 필드에 캐싱
     // 빌드 이후에 변경될 일이 없는 데이터이기 때문
-    this.posts = findMdFiles(PostService.ROOT_DIR_POSTS).map(filePath => {
-      const postId = getIdFromFilePath(filePath);
-      const parsed = parseMdFile(filePath);
+    this.posts = findMdFiles(PostService.ROOT_DIR_POSTS)
+      .map(filePath => {
+        const postId = getIdFromFilePath(filePath);
+        const parsed = parseMdFile(filePath);
 
-      return {
-        id: postId,
-        title: parsed.frontMatter.title,
-        date: new Date(parsed.frontMatter.date as string),
-        draft: parsed.frontMatter.draft,
-        bodyHtml: convertMdToHtml(parsed.bodyMd),
-      } as Post;
-    });
+        return {
+          id: postId,
+          title: parsed.frontMatter.title,
+          date: new Date(parsed.frontMatter.date as string),
+          draft: parsed.frontMatter.draft,
+          bodyHtml: convertMdToHtml(parsed.bodyMd),
+        } as Post;
+      })
+      .filter(post => !post.draft);
   }
 
   /**
