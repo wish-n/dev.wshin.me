@@ -45,6 +45,10 @@ class PostService {
       .map(([year, posts]) => ({ year, posts }))
       .toSorted(({ year: yearA }, { year: yearB }) => yearB - yearA);
   }
+
+  get(slug: string): Post | undefined {
+    return this.posts.find(post => post.slug === slug);
+  }
 }
 
 const Posts = new PostService();
