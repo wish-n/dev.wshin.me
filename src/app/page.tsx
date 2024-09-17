@@ -1,5 +1,3 @@
-"use client";
-
 import { getAllPosts } from "@/services/post.service";
 import PostList from "@/components/PostList";
 
