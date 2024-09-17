@@ -12,8 +12,8 @@ export default function ArchivePage() {
           <h3 className="mb-2 text-lg font-medium">{year}</h3>
           <ul>
             {posts.map(post => (
-              <li key={post.slug} className="my-1">
-                <Link href={`/posts/${post.slug}`}>
+              <li key={post.id} className="my-1">
+                <Link href={`/posts/${post.id}`}>
                   <p>
                     {post.title}{" "}
                     <span className="text-neutral-500">

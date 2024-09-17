@@ -20,7 +20,10 @@ export interface PostFrontMatter {
  * 포스트 메타데이터
  */
 export interface PostMeta extends PostFrontMatter {
-  slug: string;
+  /**
+   * 포스트 ID
+   */
+  id: string;
 }
 
 /**

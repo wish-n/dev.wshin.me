@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { defaultDateFormatter } from "@/utils/date";
 
 export default function PostPage({ params }: { params: PostPageStaticParams }) {
-  const post = Posts.get(params.slug) ?? notFound();
+  const post = Posts.get(params.id) ?? notFound();
 
   return (
     <div>
@@ -21,9 +21,9 @@ export default function PostPage({ params }: { params: PostPageStaticParams }) {
   );
 }
 interface PostPageStaticParams {
-  slug: string;
+  id: string;
 }
 
 export async function generateStaticParams(): Promise<PostPageStaticParams[]> {
-  return Posts.getAll().map(post => ({ slug: post.slug }));
+  return Posts.getAll().map(post => ({ id: post.id }));
 }

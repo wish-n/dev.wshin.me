@@ -52,7 +52,7 @@ interface MdFileParseResult {
   bodyMd: string;
 }
 
-export function getSlugByFilePath(filePath: string): string {
+export function getPostIdFromFilePath(filePath: string): string {
   const pathArr = filePath.split(path.sep);
   const fileName = pathArr[pathArr.length - 1];
   const fileNameWithoutExtension = fileName.split(".")[0];

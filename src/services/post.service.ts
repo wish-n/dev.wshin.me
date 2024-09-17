@@ -1,5 +1,5 @@
 import { Post, PostMeta } from "@/models/post";
-import { convertMdToHtml, findMdFiles, getSlugByFilePath, parseMdFile } from "@/utils/markdown";
+import { convertMdToHtml, findMdFiles, getPostIdFromFilePath, parseMdFile } from "@/utils/markdown";
 
 class PostService {
   private static readonly ROOT_DIR_POSTS = "contents/posts";
@@ -10,11 +10,11 @@ class PostService {
     // constructor 시점에 마크다운 파일들을 읽어 내부 필드에 캐싱
     // 빌드 이후에 변경될 일이 없는 데이터이기 때문
     this.posts = findMdFiles(PostService.ROOT_DIR_POSTS).map(filePath => {
-      const slug = getSlugByFilePath(filePath);
+      const postId = getPostIdFromFilePath(filePath);
       const parsed = parseMdFile(filePath);
 
       return {
-        slug,
+        id: postId,
         title: parsed.frontMatter.title as string,
         date: new Date(parsed.frontMatter.date as string),
         draft: parsed.frontMatter.draft as boolean,
@@ -46,8 +46,8 @@ class PostService {
       .toSorted(({ year: yearA }, { year: yearB }) => yearB - yearA);
   }
 
-  get(slug: string): Post | undefined {
-    return this.posts.find(post => post.slug === slug);
+  get(id: string): Post | undefined {
+    return this.posts.find(post => post.id === id);
   }
 }
 

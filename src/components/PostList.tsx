@@ -12,7 +12,7 @@ interface PostListProps {
 
 function postListItem(post: Post) {
   return (
-    <li className="mb-12" key={post.slug}>
+    <li className="mb-12" key={post.id}>
       <div>
         <h2 className="text-2xl font-bold">{post.title}</h2>
         <p className="mt-2 text-sm font-medium text-neutral-500">
