@@ -15,7 +15,7 @@ function postListItem(post: Post) {
       <div>
         <h2 className="text-2xl font-bold">{post.title}</h2>
         <p className="mt-2 text-sm font-medium text-neutral-500">
-          {defaultDateFormatter(post.date)} &mdash; {post.category}
+          {defaultDateFormatter(post.date)}
         </p>
       </div>
       <div

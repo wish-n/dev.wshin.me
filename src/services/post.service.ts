@@ -1,26 +1,12 @@
 import { Post, PostMeta } from "@/models/post";
 
-export function getAllPosts(filters?: PostFilters): Post[] {
+export function getAllPosts(): Post[] {
   const posts = DUMMY_POSTS.map(post => ({
     ...post,
     bodyHtml: dummyBodyHtml,
   }));
 
-  if (!!filters) {
-    return posts.filter(post => checkByFilter(post, filters));
-  }
-
   return posts;
-}
-
-interface PostFilters {
-  category?: string | null;
-}
-
-function checkByFilter(postMeta: PostMeta, filters: PostFilters): boolean {
-  if (!!filters.category && postMeta.category !== filters.category) return false;
-
-  return true;
 }
 
 /**
@@ -73,25 +59,21 @@ const DUMMY_POSTS: PostMeta[] = [
     slug: "a",
     title: "마라탕을 졸이면 마라샹궈가 될까",
     date: new Date(2022, 8, 10),
-    category: "Foods",
   },
   {
     slug: "b",
     title: "개발이란 개발하는 것이다",
     date: new Date(2023, 8, 12),
-    category: "Dev",
   },
   {
     slug: "c",
     title: "아 배고프네",
     date: new Date(2024, 8, 13),
-    category: "Foods",
   },
   {
     slug: "d",
     title: "대충 내가 최신글이어야 함",
     date: new Date(2024, 8, 14),
-    category: "Dev",
   },
 ];
 

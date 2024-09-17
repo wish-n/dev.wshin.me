@@ -11,10 +11,6 @@ export interface PostFrontMatter {
    */
   date: Date;
   /**
-   * 카테고리
-   */
-  category?: string;
-  /**
    * Draft 여부
    */
   draft?: boolean;

@@ -1,7 +1,6 @@
 ---
 title: "포스트 1"
 date: "2023-10-01 00:00:00"
-category: "Test"
 draft: false
 ---
 
