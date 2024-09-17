@@ -2,7 +2,7 @@ import Posts from "@/services/post.service";
 import Link from "next/link";
 import { defaultDateFormatter } from "@/utils/date";
 
-export default function Archive() {
+export default function ArchivePage() {
   const posts = Posts.getAllGroupByYear();
 
   return (
