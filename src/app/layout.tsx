@@ -7,6 +7,9 @@ import config from "@/config";
 export const metadata: Metadata = {
   title: config.meta.blogTitle,
   description: config.meta.blogDescription,
+  other: {
+    "google-site-verification": config.tokens.googleSearchConsole,
+  },
 };
 
 export default function RootLayout({

@@ -13,6 +13,12 @@ const config = {
     { name: "Posts", url: "/" },
     { name: "Archive", url: "/archive" },
   ],
+  /**
+   * 외부 서비스 연동 키
+   */
+  tokens: {
+    googleSearchConsole: "3iy7hZocqND3yjbErQZMkroCzIGIjgDOm1SpChcuXF4",
+  },
 };
 
 export default config;
