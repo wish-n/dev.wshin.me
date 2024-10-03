@@ -3,7 +3,7 @@ const config = {
    * 블로그 메타 정보
    */
   meta: {
-    blogTitle: "wsh-n",
+    blogTitle: "@wsh-n",
     blogDescription: "Hello, world!",
     rootUrl: "https://dev.wshin.me/",
   },
