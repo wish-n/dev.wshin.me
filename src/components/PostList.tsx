@@ -1,6 +1,6 @@
-import { Post } from "@/models/post";
 import { defaultDateFormatter } from "@/utils/date";
 import PostsNotFound from "@/components/PostsNotFound";
+import { Post } from "@/models/markdown-content";
 
 export default function PostList(props: PostListProps) {
   return <ul>{props.posts.length > 0 ? props.posts.map(postListItem) : <PostsNotFound />}</ul>;

@@ -26,5 +26,5 @@ export default function GiscusComment() {
     ref.current?.appendChild(scriptElem);
   }, []);
 
-  return <section ref={ref} />;
+  return <section ref={ref} className="pt-24" />;
 }
