@@ -20,6 +20,7 @@ export default abstract class MarkdownContentService<T extends MarkdownContent> 
           title: parsed.frontMatter.title,
           date: new Date(parsed.frontMatter.date as string),
           draft: parsed.frontMatter.draft,
+          disableComments: parsed.frontMatter.disableComments,
           bodyHtml: convertMdToHtml(parsed.bodyMd),
         } as T;
       })

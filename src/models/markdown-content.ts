@@ -14,6 +14,10 @@ export interface MarkdownContentFrontMatter {
    * Draft 여부
    */
   draft?: boolean;
+  /**
+   * 코멘트 기능 비활성화 여부
+   */
+  disableComments?: boolean;
 }
 
 /**

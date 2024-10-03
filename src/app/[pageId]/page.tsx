@@ -4,7 +4,7 @@ import GiscusComment from "@/components/GiscusComment";
 import Pages from "@/services/page.service";
 
 export default function MarkdownPage({ params }: { params: MarkdownPageStaticParams }) {
-  const { title, date, bodyHtml } = Pages.get(params.pageId) ?? notFound();
+  const { title, date, disableComments, bodyHtml } = Pages.get(params.pageId) ?? notFound();
 
   return (
     <div>
@@ -16,9 +16,7 @@ export default function MarkdownPage({ params }: { params: MarkdownPageStaticPar
         className="prose mt-5 overflow-x-scroll break-words"
         dangerouslySetInnerHTML={{ __html: bodyHtml }}
       />
-      <div className="pt-24">
-        <GiscusComment />
-      </div>
+      {disableComments !== true && <GiscusComment />}
     </div>
   );
 }
