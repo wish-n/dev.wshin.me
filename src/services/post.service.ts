@@ -1,5 +1,5 @@
-import { Post } from "@/models/post";
 import { convertMdToHtml, findMdFiles, getIdFromFilePath, parseMdFile } from "@/utils/markdown";
+import { Post } from "@/models/markdown-content";
 
 class PostService {
   /**

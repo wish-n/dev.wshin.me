@@ -35,3 +35,5 @@ export interface MdContent extends MdContentMeta {
    */
   bodyHtml: string;
 }
+
+export interface Post extends MdContent {}
