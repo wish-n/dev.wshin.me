@@ -5,6 +5,7 @@ const config = {
   meta: {
     blogTitle: "wsh-n",
     blogDescription: "Hello, world!",
+    rootUrl: "https://dev.wshin.me/",
   },
   /**
    * 네비게이션 바에 노출할 링크 목록

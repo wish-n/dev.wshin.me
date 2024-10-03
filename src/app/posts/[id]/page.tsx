@@ -1,6 +1,7 @@
 import Posts from "@/services/post.service";
 import { notFound } from "next/navigation";
 import { defaultDateFormatter } from "@/utils/date";
+import GiscusComment from "@/components/GiscusComment";
 
 export default function PostPage({ params }: { params: PostPageStaticParams }) {
   const post = Posts.get(params.id) ?? notFound();
@@ -17,6 +18,9 @@ export default function PostPage({ params }: { params: PostPageStaticParams }) {
         className="prose mt-5 overflow-x-scroll break-words"
         dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
       />
+      <div className="pt-24">
+        <GiscusComment />
+      </div>
     </div>
   );
 }
