@@ -1,7 +1,7 @@
-import { MdContent } from "@/models/markdown-content";
+import { MarkdownContent } from "@/models/markdown-content";
 import { convertMdToHtml, findMdFiles, getIdFromFilePath, parseMdFile } from "@/utils/markdown";
 
-export default abstract class MdContentService<T extends MdContent> {
+export default abstract class MarkdownContentService<T extends MarkdownContent> {
   /**
    * 콘텐츠 캐시
    */
@@ -38,7 +38,7 @@ export default abstract class MdContentService<T extends MdContent> {
    * 모든 콘텐츠 조회 (작성일시 최신순)
    */
   getAll(): T[] {
-    return MdContentService.sortByDateDesc(this.contents);
+    return MarkdownContentService.sortByDateDesc(this.contents);
   }
 
   /**

@@ -1,7 +1,7 @@
 import { Post } from "@/models/markdown-content";
-import MdContentService from "@/services/markdown-content.service";
+import MarkdownContentService from "@/services/markdown-content.service";
 
-class PostService extends MdContentService<Post> {
+class PostService extends MarkdownContentService<Post> {
   constructor() {
     super("contents/posts");
   }
