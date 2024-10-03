@@ -1,6 +1,7 @@
 // https://github.com/vercel/next.js/issues/59136
 import Posts from "@/services/post.service";
 import config from "@/config";
+import Pages from "@/services/page.service";
 
 export async function GET() {
   return new Response(getSitemap(), { headers: { "Content-Type": "text/xml" } });
@@ -26,6 +27,15 @@ function getSitemap() {
   Posts.getAll().forEach(post => {
     urls.push({
       url: urlOf(`/posts/${post.id}`),
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 1,
+    });
+  });
+
+  Pages.getAll().forEach(page => {
+    urls.push({
+      url: urlOf(`/${page.id}`),
       lastModified: now,
       changeFrequency: "daily",
       priority: 1,
