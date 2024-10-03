@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { defaultDateFormatter } from "@/utils/date";
 import GiscusComment from "@/components/GiscusComment";
 import Pages from "@/services/page.service";
 
@@ -10,10 +9,9 @@ export default function MarkdownPage({ params }: { params: MarkdownPageStaticPar
     <div>
       <div>
         <h2 className="text-2xl font-bold">{title}</h2>
-        <p className="mt-2 text-sm font-medium text-neutral-500">{defaultDateFormatter(date)}</p>
       </div>
       <div
-        className="prose mt-5 overflow-x-scroll break-words"
+        className="prose mt-10 overflow-x-scroll break-words"
         dangerouslySetInnerHTML={{ __html: bodyHtml }}
       />
       {disableComments !== true && <GiscusComment />}
