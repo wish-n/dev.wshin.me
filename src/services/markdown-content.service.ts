@@ -39,14 +39,14 @@ export default abstract class MarkdownContentService<T extends MarkdownContent> 
    * 모든 콘텐츠 조회 (작성일시 최신순)
    */
   getAll(): T[] {
-    return MarkdownContentService.sortByDateDesc(this.contents);
+    return this.sortByDateDesc(this.contents);
   }
 
   /**
    * 작성일시 최신순으로 정렬하여 반환
    * @param contents 콘텐츠 목록
    */
-  private static sortByDateDesc(contents: readonly T[]): T[] {
+  private sortByDateDesc(contents: readonly T[]): T[] {
     return contents.toSorted((postA, postB) => postB.date.getTime() - postA.date.getTime());
   }
 }
