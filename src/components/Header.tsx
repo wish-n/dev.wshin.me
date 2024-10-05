@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Header(props: HeaderProps) {
   return (
     <header className="flex flex-row justify-between align-middle">
-      <h1 className="select-none text-xl font-bold">
-        <Link href="/">{props.blogTitle}</Link>
-      </h1>
+      <Link href="/">
+        <h1 className="highlight select-none text-xl font-bold">{props.blogTitle}</h1>
+      </Link>
       <Navigator navLinks={props.navLinks} />
     </header>
   );
