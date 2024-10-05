@@ -12,7 +12,7 @@ const config = {
    */
   navLinks: [
     { name: "Posts", url: "/" },
-    { name: "Archive", url: "/archive" },
+    { name: "About", url: "/about" },
   ],
   /**
    * 외부 서비스 연동 키
