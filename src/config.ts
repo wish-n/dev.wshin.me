@@ -10,7 +10,10 @@ const config = {
   /**
    * 네비게이션 바에 노출할 링크 목록
    */
-  navLinks: [{ name: "Posts", url: "/" }],
+  navLinks: [
+    { name: "Posts", url: "/" },
+    { name: "About", url: "/about" },
+  ],
   /**
    * 외부 서비스 연동 키
    */
