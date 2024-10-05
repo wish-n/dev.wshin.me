@@ -13,7 +13,7 @@ export default function PostPage({ params }: { params: PostPageStaticParams }) {
         <p className="mt-2 text-sm font-medium text-neutral-500">{defaultDateFormatter(date)}</p>
       </div>
       <div
-        className="prose mt-5 overflow-x-scroll break-words"
+        className="prose mt-10 overflow-x-scroll break-words"
         dangerouslySetInnerHTML={{ __html: bodyHtml }}
       />
       {disableComments !== true && <GiscusComment />}
