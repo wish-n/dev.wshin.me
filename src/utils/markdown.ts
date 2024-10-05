@@ -6,6 +6,7 @@ import { unified } from "unified";
 import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import remarkGfm from "remark-gfm";
 
 /**
  * rootDirPath 하위 모든 마크다운 파일들의 경로 목록 반환
@@ -85,6 +86,7 @@ export function getIdFromFilePath(filePath: string): string {
 export function convertMdToHtml(mdContent: string): string {
   return unified()
     .use(remarkParse)
+    .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeStringify)
     .processSync(mdContent)
