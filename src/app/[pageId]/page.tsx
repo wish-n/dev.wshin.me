@@ -11,7 +11,7 @@ export default function MarkdownPage({ params }: { params: MarkdownPageStaticPar
         <h2 className="text-2xl font-bold">{title}</h2>
       </div>
       <div
-        className="prose mt-10 overflow-x-scroll break-words"
+        className="prose mt-10 overflow-x-scroll break-words dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: bodyHtml }}
       />
       {disableComments !== true && <GiscusComment />}
