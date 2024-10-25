@@ -19,7 +19,7 @@ function getSitemap() {
 
   Posts.getAll().forEach(post => {
     urls.push({
-      url: urlOf(`/posts/${post.id}`),
+      url: urlOf(`/posts/${post.urlPath}`),
       lastModified: now,
       changeFrequency: "daily",
       priority: 1,
