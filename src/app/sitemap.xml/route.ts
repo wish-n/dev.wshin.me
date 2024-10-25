@@ -16,12 +16,6 @@ function getSitemap() {
       changeFrequency: "daily",
       priority: 1,
     },
-    {
-      url: urlOf("/archive"),
-      lastModified: now,
-      changeFrequency: "daily",
-      priority: 1,
-    },
   ];
 
   Posts.getAll().forEach(post => {
