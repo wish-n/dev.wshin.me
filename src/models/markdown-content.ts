@@ -41,4 +41,3 @@ export interface MarkdownContent extends MarkdownContentMeta {
 }
 
 export interface Post extends MarkdownContent {}
-export interface Page extends MarkdownContent {}
