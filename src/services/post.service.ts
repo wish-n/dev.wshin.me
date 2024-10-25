@@ -1,17 +1,28 @@
 import { Post } from "@/services/post.model";
-import { convertMdToHtml, findMdFiles, getIdFromFilePath, parseMdFile } from "@/utils/markdown";
+import {
+  convertMdToHtml,
+  findMarkdownFilePaths,
+  getIdFromFilePath,
+  parseMdFile,
+} from "@/utils/markdown";
 import config from "@/config";
+import * as Path from "node:path";
 
 class PostService {
+  private readonly ROOT_DIR_PATH = config.postRootDirectoryPath;
   private readonly contents: readonly Post[];
 
-  constructor(rootDirPath: string) {
+  constructor() {
     // constructor 시점에 마크다운 파일들을 읽어 내부 필드에 캐싱
     // 빌드 이후에 변경될 일이 없는 데이터이기 때문
-    this.contents = findMdFiles(rootDirPath)
+    this.contents = this.loadPosts(this.ROOT_DIR_PATH);
+  }
+
+  private loadPosts(rootDirPath: string): Post[] {
+    return findMarkdownFilePaths(rootDirPath)
       .map(filePath => {
         const id = getIdFromFilePath(filePath);
-        const parsed = parseMdFile(filePath);
+        const parsed = parseMdFile(Path.join(rootDirPath, filePath));
 
         return {
           id,
@@ -41,5 +52,5 @@ class PostService {
   }
 }
 
-const Posts = new PostService(config.postRootDirectoryPath);
+const Posts = new PostService();
 export default Posts;

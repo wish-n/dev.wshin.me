@@ -9,14 +9,17 @@ import remarkRehype from "remark-rehype";
 import remarkGfm from "remark-gfm";
 
 /**
- * rootDirPath 하위 모든 마크다운 파일들의 경로 목록 반환
+ * rootDirPath 하위 모든 마크다운 파일들의 경로 목록 반환 (rootDirPath는 경로에 포함되지 않음)
  * @param rootDirPath 탐색을 시작할 최상위 디렉터리 경로
  */
-export function findMdFiles(rootDirPath: string): string[] {
+export function findMarkdownFilePaths(rootDirPath: string): string[] {
   return walk(rootDirPath).filter(isMdFile);
 }
 
-function walk(dirPath: string): string[] {
+function walk(rootDirPath: string, currDirPathUnderRoot?: string): string[] {
+  currDirPathUnderRoot = currDirPathUnderRoot ?? "";
+  const dirPath = Path.join(rootDirPath, currDirPathUnderRoot);
+
   const filePaths: string[] = [];
   const dirPaths: string[] = [];
 
@@ -32,14 +35,15 @@ function walk(dirPath: string): string[] {
     const dirContentPath = Path.join(dirPath, name);
     const stat = fs.lstatSync(dirContentPath);
 
+    const pathToPush = Path.join(currDirPathUnderRoot, name);
     if (stat.isFile()) {
-      filePaths.push(dirContentPath);
+      filePaths.push(pathToPush);
     } else if (stat.isDirectory()) {
-      dirPaths.push(dirContentPath);
+      dirPaths.push(pathToPush);
     }
   });
 
-  return [...filePaths, ...dirPaths.map(walk).flat(1)];
+  return [...filePaths, ...dirPaths.map(path => walk(rootDirPath, path)).flat(1)];
 }
 
 function isMdFile(filePath: string): boolean {
