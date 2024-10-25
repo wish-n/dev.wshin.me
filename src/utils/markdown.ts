@@ -76,8 +76,15 @@ export function getUrlPath(filePath: string): string {
   const baseUrlPath = split.slice(0, split.length - 1).join("/");
   const fileNameWithoutExtension = split[split.length - 1].split(".")[0];
 
-  return fileNameWithoutExtension === "index"
-    ? baseUrlPath
+  if (fileNameWithoutExtension === "index") {
+    if (baseUrlPath === "") {
+      throw new Error("index.md is not allowed on root directory");
+    }
+    return baseUrlPath;
+  }
+
+  return baseUrlPath === ""
+    ? fileNameWithoutExtension
     : [baseUrlPath, fileNameWithoutExtension].join("/");
 }
 
