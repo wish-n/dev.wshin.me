@@ -1,6 +1,6 @@
 import { defaultDateFormatter } from "@/utils/date";
 import PostsNotFound from "@/components/PostsNotFound";
-import { Post } from "@/models/markdown-content";
+import { Post } from "@/services/post.model";
 import Link from "next/link";
 
 export default function PostList(props: PostListProps) {
