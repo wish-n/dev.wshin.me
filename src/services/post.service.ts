@@ -1,10 +1,5 @@
 import { Post } from "@/services/post.model";
-import {
-  convertMdToHtml,
-  findMarkdownFilePaths,
-  getIdFromFilePath,
-  parseMdFile,
-} from "@/utils/markdown";
+import { convertMdToHtml, findMarkdownFilePaths, getUrlPath, parseMdFile } from "@/utils/markdown";
 import config from "@/config";
 import * as Path from "node:path";
 
@@ -21,11 +16,10 @@ class PostService {
   private loadPosts(rootDirPath: string): Post[] {
     return findMarkdownFilePaths(rootDirPath)
       .map(filePath => {
-        const id = getIdFromFilePath(filePath);
         const parsed = parseMdFile(Path.join(rootDirPath, filePath));
 
         return {
-          id,
+          urlPath: getUrlPath(filePath),
           title: parsed.frontMatter.title,
           date: new Date(parsed.frontMatter.date as string),
           draft: parsed.frontMatter.draft,
@@ -36,8 +30,8 @@ class PostService {
       .filter(post => !post.draft);
   }
 
-  get(id: string): Post | undefined {
-    return this.contents.find(content => content.id === id);
+  get(urlPath: string): Post | undefined {
+    return this.contents.find(content => content.urlPath === urlPath);
   }
 
   getAll(): Post[] {

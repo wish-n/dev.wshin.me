@@ -4,7 +4,8 @@ import { defaultDateFormatter } from "@/utils/date";
 import GiscusComment from "@/components/GiscusComment";
 
 export default function PostPage({ params }: { params: PostPageStaticParams }) {
-  const { title, date, disableComments, bodyHtml } = Posts.get(params.id) ?? notFound();
+  const urlPath = getUrlPath(params.urlPathArr);
+  const { title, date, disableComments, bodyHtml } = Posts.get(urlPath) ?? notFound();
 
   return (
     <div>
@@ -22,9 +23,17 @@ export default function PostPage({ params }: { params: PostPageStaticParams }) {
 }
 
 interface PostPageStaticParams {
-  id: string;
+  urlPathArr: string[];
 }
 
 export async function generateStaticParams(): Promise<PostPageStaticParams[]> {
-  return Posts.getAll().map(({ id }) => ({ id }));
+  return Posts.getAll().map(({ urlPath }) => ({ urlPathArr: getUrlPathArr(urlPath) }));
+}
+
+function getUrlPathArr(urlPath: string): string[] {
+  return urlPath.split("/");
+}
+
+function getUrlPath(urlPathArr: string[]): string {
+  return urlPathArr.join("/");
 }

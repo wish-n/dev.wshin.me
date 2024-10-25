@@ -70,17 +70,15 @@ interface MdFileParseResult {
   bodyMd: string;
 }
 
-/**
- * 마크다운 파일의 경로를 통해 ID를 생성
- * @param filePath 마크다운 파일 경로
- */
-export function getIdFromFilePath(filePath: string): string {
-  const pathArr = filePath.split(path.sep);
-  const fileName = pathArr[pathArr.length - 1];
-  const fileNameWithoutExtension = fileName.split(".")[0];
-  const upperDirName = pathArr[pathArr.length - 2];
+export function getUrlPath(filePath: string): string {
+  const split = filePath.split(path.sep);
 
-  return fileNameWithoutExtension === "index" ? upperDirName : fileNameWithoutExtension;
+  const baseUrlPath = split.slice(0, split.length - 1).join("/");
+  const fileNameWithoutExtension = split[split.length - 1].split(".")[0];
+
+  return fileNameWithoutExtension === "index"
+    ? baseUrlPath
+    : [baseUrlPath, fileNameWithoutExtension].join("/");
 }
 
 /**
