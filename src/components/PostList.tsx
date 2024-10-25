@@ -13,8 +13,8 @@ interface PostListProps {
 
 function postListItem(post: Post) {
   return (
-    <li className="mb-7" key={post.id}>
-      <Link href={`/posts/${post.id}`}>
+    <li className="mb-7" key={post.urlPath}>
+      <Link href={`/posts/${post.urlPath}`}>
         <h2 className="text-lg font-medium">{post.title}</h2>
         <p className="text-sm text-neutral-500">{defaultDateFormatter(post.date)}</p>
       </Link>
