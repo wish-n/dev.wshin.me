@@ -10,7 +10,7 @@ const config = {
   /**
    * 포스트 최상위 폴더 상대 경로
    */
-  postRootDirectoryPath: "contents/posts",
+  postRootDirectoryPath: "contents",
   /**
    * 네비게이션 바에 노출할 링크 목록
    */
