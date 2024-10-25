@@ -4,7 +4,7 @@ import PostList from "@/components/PostList";
 export default function HomePage() {
   return (
     <div>
-      <PostList posts={Posts.getAll()} />
+      <PostList posts={Posts.getListablePosts()} />
     </div>
   );
 }
