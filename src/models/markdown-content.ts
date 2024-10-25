@@ -15,7 +15,7 @@ export interface MarkdownContentFrontMatter {
    */
   draft?: boolean;
   /**
-   * 코멘트 기능 비활성화 여부
+   * 코멘트 기능 비노출 여부
    */
   disableComments?: boolean;
 }
