@@ -8,12 +8,13 @@ const config = {
     rootUrl: "https://dev.wshin.me/",
   },
   /**
+   * 포스트 최상위 폴더 상대 경로
+   */
+  postRootDirectoryPath: "contents/posts",
+  /**
    * 네비게이션 바에 노출할 링크 목록
    */
-  navLinks: [
-    { name: "Posts", url: "/" },
-    { name: "About", url: "/about" },
-  ],
+  navLinks: [],
   /**
    * 외부 서비스 연동 키
    */
