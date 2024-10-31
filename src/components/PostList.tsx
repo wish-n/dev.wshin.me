@@ -20,13 +20,17 @@ interface PostListProps {
   posts: Post[];
 }
 
-const PostListItem = ({ post }: { post: Post }) => (
-  <li className="mb-7" key={post.id}>
-    <Link href={`/posts/${post.id}`}>
-      <h2 className="text-lg font-medium">{post.title}</h2>
-      <p className="text-sm text-neutral-500">{defaultDateFormatter(post.date)}</p>
-    </Link>
-  </li>
-);
+function PostListItem({ post }: { post: Post }) {
+  return (
+    <li className="mb-7" key={post.id}>
+      <Link href={`/posts/${post.id}`}>
+        <h2 className="text-lg font-medium">{post.title}</h2>
+        <p className="text-sm text-neutral-500">{defaultDateFormatter(post.date)}</p>
+      </Link>
+    </li>
+  );
+}
 
-const PostsNotFound = () => <p className="text-center">Posts Not Found</p>;
+function PostsNotFound() {
+  return <p className="text-center">Posts Not Found</p>;
+}
