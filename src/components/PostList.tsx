@@ -1,23 +1,32 @@
 import { defaultDateFormatter } from "@/utils/date";
-import PostsNotFound from "@/components/PostsNotFound";
 import { Post } from "@/services/post.model";
 import Link from "next/link";
 
-export default function PostList(props: PostListProps) {
-  return <ul>{props.posts.length > 0 ? props.posts.map(postListItem) : <PostsNotFound />}</ul>;
+export default function PostList({ posts }: PostListProps) {
+  if (posts.length < 1) {
+    return <PostsNotFound />;
+  }
+
+  return (
+    <ul>
+      {posts.map(post => (
+        <PostListItem key={post.id} post={post} />
+      ))}
+    </ul>
+  );
 }
 
 interface PostListProps {
   posts: Post[];
 }
 
-function postListItem(post: Post) {
-  return (
-    <li className="mb-7" key={post.id}>
-      <Link href={`/posts/${post.id}`}>
-        <h2 className="text-lg font-medium">{post.title}</h2>
-        <p className="text-sm text-neutral-500">{defaultDateFormatter(post.date)}</p>
-      </Link>
-    </li>
-  );
-}
+const PostListItem = ({ post }: { post: Post }) => (
+  <li className="mb-7" key={post.id}>
+    <Link href={`/posts/${post.id}`}>
+      <h2 className="text-lg font-medium">{post.title}</h2>
+      <p className="text-sm text-neutral-500">{defaultDateFormatter(post.date)}</p>
+    </Link>
+  </li>
+);
+
+const PostsNotFound = () => <p className="text-center">Posts Not Found</p>;
