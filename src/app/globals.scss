@@ -21,16 +21,16 @@ body {
 
 .highlight {
   position: relative;
-}
 
-.highlight::before {
-  background-color: #46b96c;
-  content: "";
-  position: absolute;
-  width: calc(100% + 4px);
-  height: 60%;
-  left: -2px;
-  bottom: -4px;
-  z-index: -1;
-  transform: rotate(-2deg);
+  &:before {
+    background-color: #46b96c;
+    content: "";
+    position: absolute;
+    width: calc(100% + 4px);
+    height: 60%;
+    left: -2px;
+    bottom: -4px;
+    z-index: -1;
+    transform: rotate(-2deg);
+  }
 }
