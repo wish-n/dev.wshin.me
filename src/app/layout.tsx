@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="mx-auto max-w-lg px-5 pb-16 pt-10 sm:pb-32 sm:pt-20">
         <Header blogTitle={config.meta.blogTitle} navLinks={config.navLinks} />
         <main className="mb-16 mt-12">{children}</main>
-        <Footer year={currentYear} blogTitle={config.meta.blogTitle} />
+        <Footer year={currentYear} blogAuthor={config.meta.blogAuthor} />
       </body>
     </html>
   );

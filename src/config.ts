@@ -5,6 +5,7 @@ const config = {
   meta: {
     blogTitle: "@wsh-n",
     blogDescription: "Hello, world!",
+    blogAuthor: "wsh-n",
     rootUrl: "https://dev.wshin.me/",
   },
   /**

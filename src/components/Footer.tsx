@@ -2,7 +2,7 @@ export default function Footer(props: FooterProps) {
   return (
     <footer className="select-none">
       <p className="text-sm">
-        &copy; {props.year} {props.blogTitle}
+        &copy; {props.year} {props.blogAuthor}
       </p>
     </footer>
   );
@@ -10,5 +10,5 @@ export default function Footer(props: FooterProps) {
 
 interface FooterProps {
   year: number;
-  blogTitle: string;
+  blogAuthor: string;
 }
