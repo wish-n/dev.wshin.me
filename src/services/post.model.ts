@@ -25,9 +25,9 @@ interface MarkdownContentFrontMatter {
  */
 interface MarkdownContentMeta extends MarkdownContentFrontMatter {
   /**
-   * 포스트의 URL Path이자, ID 역할
+   * 마크다운 콘텐츠 ID
    */
-  urlPath: string;
+  id: string;
 }
 
 /**
