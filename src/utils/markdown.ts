@@ -9,17 +9,14 @@ import remarkRehype from "remark-rehype";
 import remarkGfm from "remark-gfm";
 
 /**
- * rootDirPath 하위 모든 마크다운 파일들의 경로 목록 반환 (rootDirPath는 경로에 포함되지 않음)
+ * rootDirPath 하위 모든 마크다운 파일들의 경로 목록 반환
  * @param rootDirPath 탐색을 시작할 최상위 디렉터리 경로
  */
-export function findMarkdownFilePaths(rootDirPath: string): string[] {
+export function findMdFiles(rootDirPath: string): string[] {
   return walk(rootDirPath).filter(isMdFile);
 }
 
-function walk(rootDirPath: string, currDirPathUnderRoot?: string): string[] {
-  currDirPathUnderRoot = currDirPathUnderRoot ?? "";
-  const dirPath = Path.join(rootDirPath, currDirPathUnderRoot);
-
+function walk(dirPath: string): string[] {
   const filePaths: string[] = [];
   const dirPaths: string[] = [];
 
@@ -35,15 +32,14 @@ function walk(rootDirPath: string, currDirPathUnderRoot?: string): string[] {
     const dirContentPath = Path.join(dirPath, name);
     const stat = fs.lstatSync(dirContentPath);
 
-    const pathToPush = Path.join(currDirPathUnderRoot, name);
     if (stat.isFile()) {
-      filePaths.push(pathToPush);
+      filePaths.push(dirContentPath);
     } else if (stat.isDirectory()) {
-      dirPaths.push(pathToPush);
+      dirPaths.push(dirContentPath);
     }
   });
 
-  return [...filePaths, ...dirPaths.map(path => walk(rootDirPath, path)).flat(1)];
+  return [...filePaths, ...dirPaths.map(walk).flat(1)];
 }
 
 function isMdFile(filePath: string): boolean {
@@ -70,22 +66,17 @@ interface MdFileParseResult {
   bodyMd: string;
 }
 
-export function getUrlPath(filePath: string): string {
-  const split = filePath.split(path.sep);
+/**
+ * 마크다운 파일의 경로를 통해 ID를 생성
+ * @param filePath 마크다운 파일 경로
+ */
+export function getIdFromFilePath(filePath: string): string {
+  const pathArr = filePath.split(path.sep);
+  const fileName = pathArr[pathArr.length - 1];
+  const fileNameWithoutExtension = fileName.split(".")[0];
+  const upperDirName = pathArr[pathArr.length - 2];
 
-  const baseUrlPath = split.slice(0, split.length - 1).join("/");
-  const fileNameWithoutExtension = split[split.length - 1].split(".")[0];
-
-  if (fileNameWithoutExtension === "index") {
-    if (baseUrlPath === "") {
-      throw new Error("index.md is not allowed on root directory");
-    }
-    return baseUrlPath;
-  }
-
-  return baseUrlPath === ""
-    ? fileNameWithoutExtension
-    : [baseUrlPath, fileNameWithoutExtension].join("/");
+  return fileNameWithoutExtension === "index" ? upperDirName : fileNameWithoutExtension;
 }
 
 /**
