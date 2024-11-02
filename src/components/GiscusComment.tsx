@@ -11,7 +11,7 @@ export default function GiscusComment() {
     scriptElem.async = true;
     scriptElem.crossOrigin = "anonymous";
 
-    scriptElem.setAttribute("data-repo", "wsh-n/wsh-n.github.io");
+    scriptElem.setAttribute("data-repo", "wish-n/dev.wshin.me");
     scriptElem.setAttribute("data-repo-id", "R_kgDOMuQ0Fg");
     scriptElem.setAttribute("data-category", "giscus comments");
     scriptElem.setAttribute("data-category-id", "DIC_kwDOMuQ0Fs4Ciib2");
