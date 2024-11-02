@@ -3,9 +3,9 @@ const config = {
    * 블로그 메타 정보
    */
   meta: {
-    blogTitle: "@wsh-n",
+    blogTitle: "@wish-n",
     blogDescription: "Hello, world!",
-    blogAuthor: "wsh-n",
+    blogAuthor: "wish-n",
     rootUrl: "https://dev.wshin.me/",
   },
   /**
